@@ -15,7 +15,7 @@ int
 main(int argc, char *argv[])
 {
     
-    printf ("mfserver started\n");
+    printf ("mfserver pid=%d\n", (int) getpid());
     
     // register the signal handler function
     
