@@ -1,7 +1,7 @@
 #ifndef _MF_H_
 #define _MF_H_
 
-# You should not change this file. It is the interface of the MF library.
+//You should not change this file. It is the interface of the MF library.
 
 #define CONFIG_FILENAME "mf.config"
 // name of the config file.
