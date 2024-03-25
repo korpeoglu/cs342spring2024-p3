@@ -25,8 +25,7 @@ main(int argc, char **argv)
     ret = fork();
     if (ret > 0) {
         // parent process - P1
-        sleep(3);
-        char *bufptr = (char *) malloc (MAXDATALEN);
+        char *bufptr = (char *) malloc (MAX_DATALEN);
         sem1 = sem_open(semname1, 0);
         sem2 = sem_open(semname2, 0);
         mf_connect();
@@ -45,19 +44,19 @@ main(int argc, char **argv)
     }
     else if (ret == 0) {
         // child process - P2
-        char *bufptr = (char *) malloc (MAXDATALEN);
+        char *bufptr = (char *) malloc (MAX_DATALEN);
         sem1 = sem_open(semname1, 0);
         sem2 = sem_open(semname2, 0);
         sem_wait (sem1);
         mf_connect();
         qid = mf_open(mqname1);
         for (i = 0; i < COUNT; ++i) {
-            mf_recv (qid, (void *) bufptr, MAXDATALEN);
+            mf_recv (qid, (void *) bufptr, MAX_DATALEN);
             printf ("%s\n", bufptr);
         }
         mf_close(qid);
         mf_disconnect();
         sem_post(sem2);
     }
-	return 0;
+    return 0;
 }
