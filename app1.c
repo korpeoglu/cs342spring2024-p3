@@ -12,7 +12,7 @@
 char *semname1 = "/semaphore1";
 char *semname2 = "/semaphore2";
 sem_t *sem1, *sem2;
-char *mqname1 = "/msgqueue1";
+char *mqname1 = "msgqueue1";
 
 int 
 main(int argc, char **argv)
