@@ -1,20 +1,32 @@
 #ifndef _MF_H_
 #define _MF_H_
 
+# You should not change this file. It is the interface of the MF library.
+
+#define CONFIG_FILENAME "mf.config"
+// name of the config file.
+
 // min and max msg length
-#define MINDATALEN 1 // byte
-#define MAXDATALEN 4096 // bytes - 4KB
+#define MIN_DATALEN 1 // byte
+#define MAX_DATALEN 4096 // bytes
+// min and max message size (data length)
 
 // min and max queue size
-#define MINMQSIZE  16 // KB
-#define MAXMQSIZE  128 // KB
+#define MIN_MQSIZE  16 // KB
+#define MAX_MQSIZE  128 // KB
 // MQSIZE should be a multiple of 4KB
 
 // min and max shared memory region size
-#define MINSMEMSIZE  20 // 2^20 - 1 MB
-#define MAXSMEMSIZE  28 // 2^23 - 8 MB
+#define MIN_SHMEMSIZE  512  // in KB
+#define MAX_SHMEMSIZE  8192 // in KB
+// shared memory size must be a power of 2
 
-#define MAXFILENAME 128 // max file or shared memory name
+#define MAXFILENAME 128 
+// max file or shared memory name
+
+#define MAX_MQNAMESIZE 128
+// max message queue name size
+
 
 int mf_init();
 int mf_destroy();
