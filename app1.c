@@ -41,8 +41,6 @@ main(int argc, char **argv)
     if (ret > 0) {
         // parent process - P1
         // parent will create a message queue
-       // sem1 = sem_open(semname1, 0);
-        //sem2 = sem_open(semname2, 0);
         
         mf_connect();
         
@@ -54,10 +52,7 @@ main(int argc, char **argv)
         
         while (1) {
             n_sent = rand() % MAX_DATALEN;
-            //sprintf (databuf, "%s-%d", "MessageData", i);
-            ret = -1;
-            while (ret == -1)
-                ret = mf_send (qid, (void *) sendbuffer, n_sent);
+            ret = mf_send (qid, (void *) sendbuffer, n_sent);
             printf ("app sent message, datalen=%d\n", n_sent);
             sentcount++;
             if (sentcount == totalcount)
@@ -65,25 +60,23 @@ main(int argc, char **argv)
         }
         mf_close(qid);
         sem_wait(sem2);
+        // we are sure other process received the messages
+        
         mf_remove(mqname1);   // remove mq
         mf_disconnect();
     }
     else if (ret == 0) {
         // child process - P2
-        // child will connect to open and use the queue
-        //sem1 = sem_open(semname1, 0);
-        //sem2 = sem_open(semname2, 0);
+        // child will connect, open mq, use mq
         sem_wait (sem1);
+        // we are sure mq was created
         
         mf_connect();
         
         qid = mf_open(mqname1);
         
         while (1) {
-            n_received = -1;
-            while (n_received == -1) {
-                n_received =  mf_recv (qid, (void *) recvbuffer, MAX_DATALEN);
-            }
+            n_received =  mf_recv (qid, (void *) recvbuffer, MAX_DATALEN);
             printf ("app received message, datalen=%d\n", n_received);
             receivedcount++;
             if (receivedcount == totalcount)
