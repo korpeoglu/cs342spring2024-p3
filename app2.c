@@ -58,7 +58,6 @@ void test_messageflow_2p1mq()
         //  process - P1
         //  will create a message queue
         mf_connect();
-        mf_create ("mq1", 16); //  create mq;  16 KB; size is in KB
         qid = mf_open("mq1");
         while (1) {
             n_sent = rand() % MAX_DATALEN;
