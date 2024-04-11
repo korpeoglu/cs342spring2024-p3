@@ -102,8 +102,8 @@ void test_messageflow_4p2mq()
     char sendbuffer[MAX_DATALEN];
     int n_sent;
     char recvbuffer[MAX_DATALEN];
-    int sentcount;
-    int receivedcount;
+    int sentcount = 0;
+    int receivedcount = 0;
     int i;
     
     mf_connect();
