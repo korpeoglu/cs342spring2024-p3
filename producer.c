@@ -41,7 +41,7 @@ main(int argc, char **argv)
     sentcount = 0;
     while (1) {
         if (sentcount < totalcount) {
-            n_sent = rand() % MAX_DATALEN;
+            n_sent = 1 + (rand() % (MAX_DATALEN - 1));
             sendbuffer[0] = 1;
             mf_send(qid, (void *) sendbuffer, n_sent);
             sentcount++;
