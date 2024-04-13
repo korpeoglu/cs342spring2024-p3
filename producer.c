@@ -33,8 +33,8 @@ main(int argc, char **argv)
     if (argc == 2)
         totalcount = atoi(argv[1]);
 
-    //clock_gettime(CLOCK_REALTIME, &t1);
-    //srand(t1.tv_nsec);
+    clock_gettime(CLOCK_REALTIME, &t1);
+    srand(t1.tv_nsec);
 
     mf_connect();
     qid = mf_open(mqname);
