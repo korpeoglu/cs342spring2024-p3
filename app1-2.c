@@ -43,7 +43,7 @@ main(int argc, char **argv)
         qid = mf_open(mqname1);
         
         while (1) {
-            n_sent = rand() % MAX_DATALEN;
+	        n_sent = 1 + (rand() % MAX_DATALEN);
             ret = mf_send (qid, (void *) sendbuffer, n_sent);
             printf ("app sent message, datalen=%d\n", n_sent);
             sentcount++;
