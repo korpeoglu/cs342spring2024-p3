@@ -60,7 +60,7 @@ void test_messageflow_2p1mq()
         mf_connect();
         qid = mf_open("mq1");
         while (1) {
-            n_sent = rand() % MAX_DATALEN;
+	    n_sent = 1 + (rand() % MAX_DATALEN);
             mf_send(qid, (void *) sendbuffer, n_sent);
             sentcount++;
             if (sentcount == totalcount)
@@ -119,7 +119,7 @@ void test_messageflow_4p2mq()
         mf_connect();
         qid = mf_open("mq1");
         while (1) {
-            n_sent = rand() % MAX_DATALEN;
+	    n_sent = 1 + (rand() % MAX_DATALEN);
             mf_send(qid, (void *) sendbuffer, n_sent);
             sentcount++;
             if (sentcount == totalcount)
@@ -156,7 +156,7 @@ void test_messageflow_4p2mq()
         mf_connect();
         qid = mf_open("mq2");
         while (1) {
-            n_sent = rand() % MAX_DATALEN;
+	    n_sent = 1 + (rand() % MAX_DATALEN);
             mf_send(qid, (void *) sendbuffer, n_sent);
             sentcount++;
             if (sentcount == totalcount)
