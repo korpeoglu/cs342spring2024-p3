@@ -24,6 +24,7 @@ main(int argc, char **argv)
     int sentcount, qid, n_sent;
     char sendbuffer[MAX_DATALEN];
     struct timespec t1;
+    int j; 
     
     totalcount = COUNT;
     if (argc != 2) {
@@ -41,10 +42,12 @@ main(int argc, char **argv)
     sentcount = 0;
     while (1) {
         if (sentcount < totalcount) {
-	    // generate a random data size
-            n_sent = 1 + (rand() % (MAX_DATALEN - 1)); 
-	    // data size is at least 1
+            n_sent = 1 + (rand() % (MAX_DATALEN - 1));
             sendbuffer[0] = 1;
+            if (n_sent > 1) {
+                for (j = 1; j < n_sent; ++j)
+                    sendbuffer[j] = 'A'; // just place some data/content
+            }
             mf_send(qid, (void *) sendbuffer, n_sent);
             sentcount++;
             printf ("sent data message %d\n", sentcount);
